@@ -24,8 +24,6 @@ It also learns from prior work via a **skill cache** (exact match + semantic ret
 
 ## Architecture (at a glance)
 
-> GitHub Mermaid is a bit strict: avoid parentheses in node text and avoid `<br/>` inside nodes.
-
 ```mermaid
 flowchart LR
   A[Problem + Options] --> B[Skill Cache\nExact SHA-256 + FAISS]
