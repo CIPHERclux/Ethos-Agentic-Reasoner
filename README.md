@@ -22,6 +22,26 @@ It also learns from prior work via a **skill cache** (exact match + semantic ret
 
 ---
 
+## Results (Phi‑3.5 in this architecture)
+
+A 96‑question evaluation (see `phi35_reasoning_analysis.html`) shows:
+
+- **Overall accuracy:** **67.7%** (**65 / 96** correct)
+- **Lift vs baseline Phi‑3.5 (~52%):** **+15.7 percentage points**
+- **Relative improvement:** **+30.2%**
+- **Avg reasoning steps:** **3.2** steps/solution
+
+**Strengths by category** (accuracy):
+- Logical traps: **100%** (3/3)
+- Optimization & planning: **76.2%** (16/21)
+- Classic riddles: **75.0%** (6/8)
+
+**Main weakness areas** to target next:
+- Spatial reasoning: **58.3%** (14/24)
+- Recurring failure modes: geometric miscounting, gear ratio inversion, repeated sequence mistakes
+
+---
+
 ## Architecture (at a glance)
 
 ```mermaid
@@ -171,17 +191,6 @@ Problem + Options
   → Executor (CoT → critique → refine)
   → Verifier (normalize)
   → Final option index
-```
-
----
-
-## Notes / housekeeping
-
-This repo currently includes several `.DS_Store` files under multiple directories.
-Consider adding to `.gitignore`:
-
-```gitignore
-.DS_Store
 ```
 
 ---
