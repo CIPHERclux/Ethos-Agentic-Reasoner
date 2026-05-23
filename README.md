@@ -24,17 +24,19 @@ It also learns from prior work via a **skill cache** (exact match + semantic ret
 
 ## Architecture (at a glance)
 
+> GitHub Mermaid is a bit strict: avoid parentheses in node text and avoid `<br/>` inside nodes.
+
 ```mermaid
 flowchart LR
-  A[Problem + Options] --> B[Skill Cache<br/>Exact SHA-256 + FAISS]
-  B --> C[Planner<br/>Goal Decomposition]
-  C --> D[Executor<br/>CoT + Self-Refinement]
-  D --> E[Verifier<br/>Normalize + Validate]
-  E --> F[Answer (Option Index)]
+  A[Problem + Options] --> B[Skill Cache\nExact SHA-256 + FAISS]
+  B --> C[Planner\nGoal Decomposition]
+  C --> D[Executor\nCoT + Self-Refinement]
+  D --> E[Verifier\nNormalize + Validate]
+  E --> F[Answer - Option Index]
 
-  B -. Exemplars (few-shot) .-> D
+  B -. "Exemplars - few-shot" .-> D
   C -. Goals .-> D
-  D <-. Tool calls .-> T[Tool Dispatcher<br/>Python / SymPy / Z3 / Retriever]
+  D <-. "Tool calls" .-> T[Tool Dispatcher\nPython / SymPy / Z3 / Retriever]
 ```
 
 ### Self‑refinement loop
@@ -146,7 +148,7 @@ Output formatting helper:
     "answer": "Option 3",
     "reasoning_steps": [
       "Step 1: Parse the question and constraints.",
-      "Step 2: Use a tool (Python/SymPy/Z3) if needed.",
+      "Step 2: Use a tool - Python/SymPy/Z3 - if needed.",
       "Step 3: Verify and normalize to an option index."
     ],
     "confidence": "medium"
